@@ -1,0 +1,37 @@
+<template>
+    <div class="aa-branding-wrapper aa-ngrp-wrapper">
+        <section role="dialog" tabindex="-1" aria-describedby="modal-content-id-1" class={sizeClass}>
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <lightning-button-icon class="slds-modal__close" icon-name="utility:close" variant="bare-inverse" size="large" icon-class="dark" onclick={handleCancelButtonClick}></lightning-button-icon>
+                    <template if:true={displayHeader}>
+                        <h2 class="slds-text-heading_medium slds-hyphenate">
+                            {title}
+                        </h2>
+                    </template>
+                    <template if:true={customHeader}>
+                        <slot name="header"></slot>
+                    </template>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium slds-is-relative">
+                    <slot name="content"></slot>
+                    <slot></slot>
+                </div>
+                <template if:true={displayFooter}>
+                    <footer class="slds-modal__footer">
+                        <lightning-button if:false={hideCancelButton} class="slds-p-right_small" label={cancelLabel} onclick={handleCancelButtonClick} variant="neutral"></lightning-button>
+                        <lightning-button if:false={hideSubmitButton} label={submitLabel} onclick={handleSubmitButtonClick} variant="brand"></lightning-button>
+                    </footer>
+                </template>
+                <template if:true={customFooter}>
+                    <footer class="slds-modal__footer">
+                        <slot name="footer"></slot>
+                    </footer>
+                </template>
+            </div>
+        </section>
+    </div>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
